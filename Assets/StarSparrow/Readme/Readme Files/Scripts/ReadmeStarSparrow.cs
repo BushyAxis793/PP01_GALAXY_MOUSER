@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ReadmeStarSparrow : ScriptableObject {
+public class Readme : ScriptableObject {
 	public Texture2D icon;
 	public string title;
 	public Section[] sections;

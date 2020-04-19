@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,19 +12,43 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float xPosRange = 7f;
     [SerializeField] float zPosRange = 5f;
-    float zPosForward = 1f;
+    float zPosForward = 3f;
 
     [SerializeField] GameObject[] guns;
+    [SerializeField] GameObject playerExplosion;
+    bool isAlive = true;
 
     private void Start()
     {
         Cursor.visible = false;
+
     }
     private void Update()
     {
-        PlayerMovementTransform();
-        ActiveGuns();
+        if (isAlive)
+        {
 
+            PlayerMovementTransform();
+            ActiveGuns();
+        }
+        else
+        {
+            return;
+        }
+
+
+    }
+
+    private void ActiveGuns()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            TurnOnGuns(true);
+        }
+        else
+        {
+            TurnOnGuns(false);
+        }
     }
 
     private void PlayerMovementTransform()
@@ -37,32 +63,41 @@ public class PlayerMovement : MonoBehaviour
         float originZPos = transform.position.z + zOffset;
 
         float clampedXPos = Mathf.Clamp(originXPos, -xPosRange, xPosRange);
-        float clampedZPos = Mathf.Clamp(originZPos, -zPosRange, zPosForward);
-
-
-
-        transform.localPosition = new Vector3(clampedXPos, 1f, clampedZPos);
         
+        transform.localPosition = new Vector3(clampedXPos, 1f, originZPos);
+        transform.Translate(Vector3.forward * Time.deltaTime);
 
     }
 
-    private void PlayerRotation()
+
+
+    private void PlayerRotation()//todo rotation with scale shooting
     {
         float roll = inputMouseX * controllFactor;
         transform.localRotation = Quaternion.Euler(0, 0, roll);
     }
-    private void ActiveGuns()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            Debug.Log("Strzelam");
 
-            foreach (GameObject gun in guns)
-            {
-                var emissionProcess = gun.GetComponent<ParticleSystem>().emission;
-                emissionProcess.enabled = false;
-            }
+    private void TurnOnGuns(bool isTurned)
+    {
+        foreach (GameObject gun in guns)
+        {
+            var emissionProcess = gun.GetComponent<ParticleSystem>().emission;
+            emissionProcess.enabled = isTurned;
         }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        GameObject explosion =  Instantiate(playerExplosion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        Destroy(explosion, .25f);
+        isAlive = false;
+        
+    }
+
+    private void RestartLevel(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 
 }
