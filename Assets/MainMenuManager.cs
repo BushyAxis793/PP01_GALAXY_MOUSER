@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    
+
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+
+    }
+
     public void NewGame()
     {
         SceneManager.LoadScene(1);
@@ -13,25 +20,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevelOne(int sceneIndex)
     {
-        sceneIndex = 1;
         SceneManager.LoadScene(sceneIndex);
     }
-    public void LoadLevelTwo()
-    {
-        SceneManager.LoadScene(2);
-    }
-    public void LoadLevelThird()
-    {
-        SceneManager.LoadScene(3);
-    }
-    public void LoadLevelFourth()
-    {
-        SceneManager.LoadScene(4);
-    }
-    public void LoadLevelFifth()
-    {
-        SceneManager.LoadScene(5);
-    }
+    
     public void Options()
     {
         
@@ -42,5 +33,14 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void BackToMainMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            
+        }
+    }
+
+  
 
 }

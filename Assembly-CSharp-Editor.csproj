@@ -96,12 +96,6 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/Mikołaj/Desktop/Repositories/PP01_GALAXY_MOUSER/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.postprocessing.Editor">
-      <HintPath>C:/Users/Mikołaj/Desktop/Repositories/PP01_GALAXY_MOUSER/Library/ScriptAssemblies/com.unity.postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.postprocessing.Runtime">
-      <HintPath>C:/Users/Mikołaj/Desktop/Repositories/PP01_GALAXY_MOUSER/Library/ScriptAssemblies/com.unity.postprocessing.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/Mikołaj/Desktop/Repositories/PP01_GALAXY_MOUSER/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>

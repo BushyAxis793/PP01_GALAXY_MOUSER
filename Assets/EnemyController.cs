@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
     [SerializeField] GameObject deathExplosionFX;
     [SerializeField] int health = 100;
     [SerializeField] int hitPoint = 10;
@@ -14,22 +15,25 @@ public class EnemyController : MonoBehaviour
 
     ScoreScript scoreScript;
 
+
+
+
     private void Start()
-    { 
+    {
         scoreScript = FindObjectOfType<ScoreScript>();
+
     }
     void OnParticleCollision(GameObject other)
     {
         GetHit();
-        if (health<=1)
+        if (health <= 1)
         {
             GameObject explosion = Instantiate(deathExplosionFX, transform.position, Quaternion.identity);
-            
             Destroy(gameObject);
-            Destroy(explosion,1f);
+            Destroy(explosion, 1f);
             scoreScript.ScoreCount(scorePerKill);
             isAlive = false;
-            
+
         }
 
     }
@@ -39,9 +43,9 @@ public class EnemyController : MonoBehaviour
         if (isAlive)
         {
             health -= hitPoint;
-           
+
         }
-        
+
     }
 
 

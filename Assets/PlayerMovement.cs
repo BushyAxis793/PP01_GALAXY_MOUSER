@@ -18,8 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject playerExplosion;
     bool isAlive = true;
 
+    [SerializeField] AudioClip shooting;
+    AudioSource shootingInSpace;
+
     private void Start()
     {
+        shootingInSpace = GetComponent<AudioSource>();
         Cursor.visible = false;
 
     }
@@ -44,9 +48,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             TurnOnGuns(true);
+            shootingInSpace.PlayOneShot(shooting);
         }
         else
         {
+            shootingInSpace.Stop();
             TurnOnGuns(false);
         }
     }
