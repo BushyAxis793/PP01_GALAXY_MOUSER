@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject deathExplosionFX;
     [SerializeField] int health = 100;
     [SerializeField] int hitPoint = 10;
-    int scorePerKill = 1;
+    int scorePerKill=1;
 
     bool isAlive = true;
 

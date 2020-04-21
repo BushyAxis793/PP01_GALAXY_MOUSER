@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
             PlayerMovementTransform();
             ActiveGuns();
+            ResetPosition();
         }
         else
         {
@@ -41,6 +42,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+
+    private void ResetPosition()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.position = new Vector3(0f, 1f, transform.position.z);///poprawic
+        }
     }
 
     private void ActiveGuns()
