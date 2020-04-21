@@ -7,11 +7,14 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] Transform playerShip;
     [SerializeField] GameObject deathExplosionFX;
-    int health = 200;
+    [SerializeField] int health = 200;
     int hitPoint = 10;
     int scorePerKill = 1;
 
     ScoreScript scoreScript;
+
+    bool isAlive = true;
+
 
     void Start()
     {
@@ -27,27 +30,36 @@ public class BossScript : MonoBehaviour
     {
         var distanceToPlayer = Vector3.Distance(playerShip.transform.position, transform.position);
 
-        if (distanceToPlayer <= 10)
+        Debug.Log(distanceToPlayer);
+
+        if (distanceToPlayer <= 5f)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime);
+            transform.Translate(Vector3.back * Time.deltaTime);
         }
+
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        if (health <= 0)
+        if (health <= 1)
         {
             GetHit();
             GameObject explosion = Instantiate(deathExplosionFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(explosion, 1f);
             scoreScript.ScoreCount(scorePerKill);
+            isAlive = false;
+
         }
     }
 
     private void GetHit()
     {
-        health -= hitPoint;
+        if (isAlive)
+        {
+
+            health -= hitPoint;
+        }
     }
 
 

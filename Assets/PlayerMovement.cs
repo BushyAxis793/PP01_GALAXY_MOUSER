@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,8 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject playerExplosion;
     bool isAlive = true;
 
+
     [SerializeField] AudioClip shooting;
     AudioSource shootingInSpace;
+
+    [SerializeField] GameObject mainMenu;
 
     private void Start()
     {
@@ -34,23 +38,18 @@ public class PlayerMovement : MonoBehaviour
 
             PlayerMovementTransform();
             ActiveGuns();
-            ResetPosition();
+            PauseGame();
+
         }
         else
         {
-            return;
+            //RestartLevel(sceneIndex);
         }
 
 
     }
 
-    private void ResetPosition()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = new Vector3(0f, 1f, transform.position.z);///poprawic
-        }
-    }
+
 
     private void ActiveGuns()
     {
@@ -78,19 +77,12 @@ public class PlayerMovement : MonoBehaviour
         float originZPos = transform.position.z + zOffset;
 
         float clampedXPos = Mathf.Clamp(originXPos, -xPosRange, xPosRange);
-        
+
         transform.localPosition = new Vector3(clampedXPos, 1f, originZPos);
         transform.Translate(Vector3.forward * Time.deltaTime);
 
     }
 
-
-
-    private void PlayerRotation()//todo rotation with scale shooting
-    {
-        float roll = inputMouseX * controllFactor;
-        transform.localRotation = Quaternion.Euler(0, 0, roll);
-    }
 
     private void TurnOnGuns(bool isTurned)
     {
@@ -103,16 +95,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        GameObject explosion =  Instantiate(playerExplosion, transform.position, Quaternion.identity);
+        GameObject explosion = Instantiate(playerExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(explosion, .25f);
         isAlive = false;
-        
+
     }
 
     private void RestartLevel(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void PauseGame()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            bool mainMenuActive = true;
+            mainMenuActive = !mainMenuActive;
+            mainMenu.SetActive(mainMenuActive);
+        }
     }
 
 }

@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject levelMenu;
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] AudioClip backgroundMusic;
+    AudioSource audioSource;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        BackToMainMenu();
     }
 
     public void NewGame()
@@ -18,14 +28,36 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void LoadLevelOne(int sceneIndex)
+    public void LoadLevelOne()
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(1);
     }
-    
+    public void LoadLevelTwo()
+    {
+        SceneManager.LoadScene(2);
+    }
+    public void LoadLevelThree()
+    {
+        SceneManager.LoadScene(3);
+    }
+    public void LoadLevelFour()
+    {
+        SceneManager.LoadScene(4);
+    }
+    public void LoadLevelFive()
+    {
+        SceneManager.LoadScene(5);
+    }
     public void Options()
     {
-        
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        else
+        {
+            audioSource.Play();
+        }
     }
 
     public void ExitApplication()
@@ -35,12 +67,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            optionsMenu.SetActive(false);
+            levelMenu.SetActive(false);
+            mainMenu.SetActive(true);
         }
     }
 
-  
+
 
 }
