@@ -74,6 +74,7 @@
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />
+    <Compile Include="Assets\OscillatorMovement.cs" />
     <Compile Include="Assets\PE2D\Particle Effects\Scripts\Demo\DemoConstraintSwitcher.cs" />
     <Compile Include="Assets\PE2D\Particle Effects\Scripts\Demo\DemoMouseController.cs" />
     <Compile Include="Assets\PE2D\Particle Effects\Scripts\Demo\DemoParticleEmitterSwitcher.cs" />

@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
     }
     void OnParticleCollision(GameObject other)
     {
+        print("Hello");
         GetHit();
         if (health <= 1)
         {
