@@ -9,11 +9,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject deathExplosionFX;
     [SerializeField] int health = 100;
     [SerializeField] int hitPoint = 10;
-    int scorePerKill=1;
+    [SerializeField] AudioClip deathAudio;
+    int scorePerKill = 1;
 
     bool isAlive = true;
 
     ScoreScript scoreScript;
+
+    AudioSource audioSource;
 
 
 
@@ -21,6 +24,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         scoreScript = FindObjectOfType<ScoreScript>();
+        audioSource = GetComponent<AudioSource>();
 
     }
     void OnParticleCollision(GameObject other)
@@ -28,6 +32,7 @@ public class EnemyController : MonoBehaviour
         GetHit();
         if (health <= 1)
         {
+            audioSource.PlayOneShot(deathAudio);
             GameObject explosion = Instantiate(deathExplosionFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(explosion, 1f);

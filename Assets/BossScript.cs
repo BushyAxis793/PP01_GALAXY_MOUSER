@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossScript : MonoBehaviour
 {
     [SerializeField] Transform playerShip;
     [SerializeField] GameObject deathExplosionFX;
-    [SerializeField] int health = 200;
+    [SerializeField] int health = 2000;
     int hitPoint = 10;
     int scorePerKill = 1;
 
@@ -30,7 +31,6 @@ public class BossScript : MonoBehaviour
     {
         var distanceToPlayer = Vector3.Distance(playerShip.transform.position, transform.position);
 
-        Debug.Log(distanceToPlayer);
 
         if (distanceToPlayer <= 5f)
         {
@@ -41,14 +41,18 @@ public class BossScript : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+
+
+        GetHit();
         if (health <= 1)
         {
-            GetHit();
+            isAlive = false;
             GameObject explosion = Instantiate(deathExplosionFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(explosion, 1f);
             scoreScript.ScoreCount(scorePerKill);
-            isAlive = false;
+            Invoke("LoadNextLevel", 2f);
+           
 
         }
     }
@@ -59,6 +63,14 @@ public class BossScript : MonoBehaviour
         {
 
             health -= hitPoint;
+        }
+    }
+
+    private void LoadNextLevel()
+    {
+        if (!isAlive)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

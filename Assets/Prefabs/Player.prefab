@@ -343,6 +343,8 @@ MonoBehaviour:
   playerExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 3}
   shooting: {fileID: 8300000, guid: 8546ae1264a720147aad660818c74e7e, type: 3}
+  mainMenu: {fileID: 0}
+  gameLeader: {fileID: 0}
 --- !u!82 &1421834378
 AudioSource:
   m_ObjectHideFlags: 0

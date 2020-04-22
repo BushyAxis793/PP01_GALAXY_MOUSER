@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     AudioSource shootingInSpace;
 
     [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject gameLeader;
+
+    bool mainMenuActive = false;
+    bool optionsMenuActive = false;
 
     private void Start()
     {
@@ -39,17 +43,21 @@ public class PlayerMovement : MonoBehaviour
             PlayerMovementTransform();
             ActiveGuns();
             PauseGame();
+            ResetPosition();
 
         }
-        else
-        {
-            //RestartLevel(sceneIndex);
-        }
+        
 
 
     }
 
-
+    private void ResetPosition()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.position = new Vector3(0f, 1f, gameLeader.transform.position.z);
+        }
+    }
 
     private void ActiveGuns()
     {
@@ -93,30 +101,43 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    public void OnTriggerEnter(Collider collision)
     {
         GameObject explosion = Instantiate(playerExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(explosion, .25f);
         isAlive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
-    private void RestartLevel(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex);
-    }
+   
 
     public void PauseGame()
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
-            bool mainMenuActive = true;
+
             mainMenuActive = !mainMenuActive;
             mainMenu.SetActive(mainMenuActive);
+            if (mainMenuActive)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+
+            }
+
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
 }
