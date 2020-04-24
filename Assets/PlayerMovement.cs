@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject gameLeader;
 
+
     bool mainMenuActive = false;
     bool optionsMenuActive = false;
 
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             ResetPosition();
 
         }
-        
+
 
 
     }
@@ -104,14 +105,14 @@ public class PlayerMovement : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         GameObject explosion = Instantiate(playerExplosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+      //  Destroy(gameObject);
         Destroy(explosion, .25f);
-        isAlive = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //isAlive = false;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
-   
+
 
     public void PauseGame()
     {
@@ -140,4 +141,5 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    
 }

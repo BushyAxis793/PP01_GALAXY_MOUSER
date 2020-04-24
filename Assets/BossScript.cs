@@ -8,14 +8,13 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] Transform playerShip;
     [SerializeField] GameObject deathExplosionFX;
-    [SerializeField] int health = 2000;
+    [SerializeField] int health = 1000;
+
     int hitPoint = 10;
     int scorePerKill = 1;
-
-    ScoreScript scoreScript;
-
     bool isAlive = true;
 
+    ScoreScript scoreScript;
 
     void Start()
     {
@@ -42,7 +41,6 @@ public class BossScript : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
 
-
         GetHit();
         if (health <= 1)
         {
@@ -51,8 +49,7 @@ public class BossScript : MonoBehaviour
             Destroy(gameObject);
             Destroy(explosion, 1f);
             scoreScript.ScoreCount(scorePerKill);
-            Invoke("LoadNextLevel", 2f);
-           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }
     }
@@ -66,13 +63,6 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    private void LoadNextLevel()
-    {
-        if (!isAlive)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }
 
 
 }

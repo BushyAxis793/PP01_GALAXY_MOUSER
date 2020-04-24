@@ -7,9 +7,11 @@ public class CameraMovement : MonoBehaviour
 {
     PlayerMovement playerMovement;
 
+
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
+
     }
     void Update()
     {
@@ -19,8 +21,9 @@ public class CameraMovement : MonoBehaviour
     private void Movement()
     {
         transform.Translate(Vector3.forward * Time.deltaTime);
-        
+
     }
 
-    
+
+
 }
