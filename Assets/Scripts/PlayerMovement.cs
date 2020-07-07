@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedFactor = 4f;
     [SerializeField] float xPosRange = 7f;
     [SerializeField] float zPosRange = 5f;
+    [SerializeField] float loadDelay = 1f;
 
     [SerializeField] GameObject[] guns;
     [SerializeField] GameObject playerExplosion;
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    
+
 
     private void TurnOnGuns(bool isTurned)
     {
@@ -100,10 +101,14 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject explosion = Instantiate(playerExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
-        Destroy(explosion, .25f);
+        Destroy(explosion, 1f);
         isAlive = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        RestartScene();
+    }
 
+    void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PauseGame()

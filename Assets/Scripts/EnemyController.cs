@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     }
     void OnParticleCollision(GameObject other)
     {
-       
+
         GetHit();
         EnemyDead();
 
@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
 
     private void EnemyDead()
     {
+
         if (health <= 1)
         {
             audioSource.PlayOneShot(deathAudio);

@@ -3815,6 +3815,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1421058720}
     m_Modifications:
+    - target: {fileID: 2694808583986157695, guid: 0104c88f01b2e1646996346e26d553dc,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8734185078138073369, guid: 0104c88f01b2e1646996346e26d553dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4617,16 +4622,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1723031137}
     m_Modifications:
+    - target: {fileID: 1569232665666331525, guid: 6f9ccf47b2fd6ef47b15afa00c1dabe5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 2974669378592156829, guid: 6f9ccf47b2fd6ef47b15afa00c1dabe5,
         type: 3}
       propertyPath: playerShip
       value: 
       objectReference: {fileID: 234586543}
-    - target: {fileID: 2974669378592156829, guid: 6f9ccf47b2fd6ef47b15afa00c1dabe5,
-        type: 3}
-      propertyPath: gameLeader
-      value: 
-      objectReference: {fileID: 2115785945}
     - target: {fileID: 8513502462601472789, guid: 6f9ccf47b2fd6ef47b15afa00c1dabe5,
         type: 3}
       propertyPath: m_LocalPosition.x
