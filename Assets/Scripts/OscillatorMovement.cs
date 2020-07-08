@@ -24,7 +24,7 @@ public class OscillatorMovement : MonoBehaviour
     private void CalculateMove()
     {
         float cycles = Time.time / period;
-        float tau = Mathf.PI * 2;//=6.28
+        float tau = Mathf.PI * 2;
         float baseSinWave = Mathf.Sin(cycles * tau);
         movementFactor = baseSinWave / 2f + 0.5f;
         Vector3 offset = movementVector * movementFactor;

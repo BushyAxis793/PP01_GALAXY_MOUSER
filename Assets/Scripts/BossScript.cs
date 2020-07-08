@@ -26,11 +26,7 @@ public class BossScript : MonoBehaviour
     private void Update()
     {
         StartMovement();
-        BossStatus();
-
     }
-
-
 
     private void StartMovement()
     {
@@ -76,29 +72,6 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    private void BossStatus()
-    {
-
-
-
-        var playerPosition = playerShip.transform.position.z;
-        var bossPosition = transform.position.z;
-        var distance = Vector3.Distance(playerShip.transform.position, transform.position);
-        print(distance);
-
-        if (distance <= 10)
-        {
-            if (distance > 10)
-            {
-                var player = FindObjectOfType<PlayerMovement>();
-                Destroy(player, 5f);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }
-
-
-
-
+   
 
 }

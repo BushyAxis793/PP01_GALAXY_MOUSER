@@ -10,28 +10,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedFactor = 4f;
     [SerializeField] float xPosRange = 7f;
     [SerializeField] float zPosRange = 5f;
-    [SerializeField] float loadDelay = 1f;
+    [SerializeField] float loadDelay = 5f;
 
     [SerializeField] GameObject[] guns;
     [SerializeField] GameObject playerExplosion;
-
-    [SerializeField] AudioClip shooting;
-    AudioSource shootingInSpace;
-
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject gameLeader;
 
+    [SerializeField] AudioClip shootingInSpace;
+    [SerializeField] AudioClip deathSFX;
+
     bool isAlive = true;
+    bool mainMenuActive = false;
+    bool optionsMenuActive = false;
+
     float zPosForward = 3f;
     float inputMouseX, inputMouseZ;
     float controllFactor = 4f;
 
-    bool mainMenuActive = false;
-    bool optionsMenuActive = false;
+    AudioSource audioSource;
 
     private void Start()
     {
-        shootingInSpace = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
 
     }
@@ -60,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             TurnOnGuns(true);
-            shootingInSpace.PlayOneShot(shooting);
+            audioSource.PlayOneShot(shootingInSpace);
         }
         else
         {
-            shootingInSpace.Stop();
+            audioSource.Stop();
             TurnOnGuns(false);
         }
     }
@@ -85,9 +86,6 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
-
-
-
     private void TurnOnGuns(bool isTurned)
     {
         foreach (GameObject gun in guns)
@@ -99,21 +97,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
+        PlayerDeath();
+    }
+
+    private void PlayerDeath()
+    {
         GameObject explosion = Instantiate(playerExplosion, transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(deathSFX);
         Destroy(gameObject);
         Destroy(explosion, 1f);
         isAlive = false;
-        RestartScene();
-    }
-
-    void RestartScene()
-    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+
     public void PauseGame()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             mainMenuActive = !mainMenuActive;

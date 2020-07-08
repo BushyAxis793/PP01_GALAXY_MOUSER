@@ -339,12 +339,14 @@ MonoBehaviour:
   speedFactor: 20
   xPosRange: 7
   zPosRange: 3
+  loadDelay: 5
   guns:
   - {fileID: 9206001631367309580}
   - {fileID: 7053765057953988665}
   playerExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 3}
-  shooting: {fileID: 8300000, guid: 8546ae1264a720147aad660818c74e7e, type: 3}
+  shootingInSpace: {fileID: 8300000, guid: 8546ae1264a720147aad660818c74e7e, type: 3}
+  deathSFX: {fileID: 8300000, guid: f6c52b284acbfbc4289f2d6f1b9dd91f, type: 3}
   mainMenu: {fileID: 0}
   gameLeader: {fileID: 0}
 --- !u!82 &1421834378
