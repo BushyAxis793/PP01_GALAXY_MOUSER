@@ -17,10 +17,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    public void LoadLevelOne()
-    {
-        SceneManager.LoadScene(1);
-    }
     public void LoadLevelTwo()
     {
         SceneManager.LoadScene(2);
@@ -50,7 +46,6 @@ public class GameManager : MonoBehaviour
             mainMenu.SetActive(true);
         }
     }
-
     public void MuteMusic()
     {
         var musicPlayer = FindObjectOfType<MusicPlayer>();
@@ -65,7 +60,4 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
         }
     }
-
-
-
 }
