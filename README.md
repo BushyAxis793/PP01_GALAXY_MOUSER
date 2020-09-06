@@ -10,12 +10,13 @@ The main goal of the project is to create a top shooter game. The mechanics of e
 * Visual Studio 2019
 * Star Sparrow Modular Spaceship Version 2.1
 * TextMesh Pro Version 2.0.1
+* GalaxyBox Version 1.0
 
 ## Features
 * Waves of Enemies
 * Boss at the end of each level
 * Control with the mouse
-* Mute music
+* Muting music
 
 ## Status
 Project is finished
@@ -27,4 +28,4 @@ This game is inspired by InterAction Studios' game "Chicken Invaders"
 Created by Mikołaj Nawrocki
 
 * [LinkedIn](https://www.linkedin.com/in/mikołaj-nawrocki/)
-* [Simmer.io](https://simmer.io/@BushyAxis793/galaxy-mouser)
+* [WebGL Version](https://simmer.io/@BushyAxis793/galaxy-mouser)
